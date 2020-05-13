@@ -1,5 +1,6 @@
 import subprocess
 import datetime
+import sys
 from newsapi import NewsApiClient
 
 # get headline
@@ -7,6 +8,9 @@ newsapi = NewsApiClient(api_key='671c92cd456f4d639703ea2e24671bbf')
 top_headline = newsapi.get_top_headlines(country='jp')
 if len(top_headline['articles']) > 5:
 	top_headline['articles'] = top_headline['articles'][0:5]
+
+# start music
+#subprocess.run('mpg321 ./bgm.mp3 &', shell=True)
 
 # read news
 dt_now = datetime.datetime.now()
@@ -26,3 +30,5 @@ for news in top_headline['articles']:
 
 
 subprocess.run('./jsay.sh ' + '以上、ニュースをお伝えしました。', shell=True)
+
+sys.exit()
