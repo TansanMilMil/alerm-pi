@@ -1,7 +1,0 @@
-- Exception - 2020/05/14 22:15:15 
-Traceback (most recent call last):
-  File "alerm-pi.py", line 11, in <module>
-    pygame.mixer.init()
-NameError: name 'pygame' is not defined
-
-
