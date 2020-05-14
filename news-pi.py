@@ -9,6 +9,12 @@ import time
 import random
 
 try:
+    # debug log
+    dt_now = datetime.datetime.now()
+    path = './debug-log.txt'
+    with open(path, mode='a') as f:
+        f.write(dt_now.strftime('called news-pi - %Y/%m/%d %H:%M:%S \n'))
+    
     # get headline
     newsapi = NewsApiClient(api_key='671c92cd456f4d639703ea2e24671bbf')
     top_headline = newsapi.get_top_headlines(country='jp')
