@@ -1,0 +1,37 @@
+- Exception - 2020/05/14 21:47:14 
+Traceback (most recent call last):
+  File "news-pi.py", line 33, in <module>
+    subprocess.run('./jsay.sh ' + news['title'], shell=True)
+  File "/usr/lib/python3.5/subprocess.py", line 385, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+  File "/usr/lib/python3.5/subprocess.py", line 793, in communicate
+    self.wait()
+  File "/usr/lib/python3.5/subprocess.py", line 1389, in wait
+    (pid, sts) = self._try_wait(0)
+  File "/usr/lib/python3.5/subprocess.py", line 1339, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+KeyboardInterrupt
+
+
+- Exception - 2020/05/14 21:50:08 
+Traceback (most recent call last):
+  File "news-pi.py", line 33, in <module>
+    subprocess.run('./jsay.sh ' + news['title'], shell=True)
+  File "/usr/lib/python3.5/subprocess.py", line 385, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+  File "/usr/lib/python3.5/subprocess.py", line 793, in communicate
+    self.wait()
+  File "/usr/lib/python3.5/subprocess.py", line 1389, in wait
+    (pid, sts) = self._try_wait(0)
+  File "/usr/lib/python3.5/subprocess.py", line 1339, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+KeyboardInterrupt
+
+
+- Exception - 2020/05/14 22:00:23 
+Traceback (most recent call last):
+  File "news-pi.py", line 17, in <module>
+    top_headline['articles'] = random.shuffle(top_headline['articles'])[0:5]
+TypeError: 'NoneType' object is not subscriptable
+
+

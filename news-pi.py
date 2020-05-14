@@ -6,6 +6,7 @@ import traceback
 from mutagen.mp3 import MP3 as mp3
 import pygame
 import time
+import random
 
 try:
     # get headline
@@ -13,14 +14,14 @@ try:
     top_headline = newsapi.get_top_headlines(country='jp')
     
     if len(top_headline['articles']) > 5:
+        random.shuffle(top_headline['articles'])
         top_headline['articles'] = top_headline['articles'][0:5]
     
     # start music
-    #subprocess.run('sudo amixer ALSA cset numid=3 1', shell=True)
-    #subprocess.run('mpg321 ./bgm.mp3 &', shell=True)
     pygame.mixer.init()
     pygame.mixer.music.load('./bgm.mp3')
-    pygame.mixer.music.play(1)
+    pygame.mixer.music.set_volume(0.1)
+    pygame.mixer.music.play(0)
 
     # read news
     dt_now = datetime.datetime.now()
@@ -33,7 +34,7 @@ try:
             
         news['description'] = """ ' """ + news['description'] + """ ' """
         print(news['description'])
-        # subprocess.run('./jsay.sh ' + news['description'], shell=True)
+        subprocess.run('./jsay.sh ' + news['description'], shell=True)
         
         print('---------------')   
     
@@ -47,4 +48,5 @@ except:
         f.write(dt_now.strftime('- Exception - %Y/%m/%d %H:%M:%S \n'))
         f.write(e + '\n\n')
 finally:
-    pygame.mixer.music.stop()
+    pygame.mixer.music.fadeout(5000)
+    time.sleep(5)
