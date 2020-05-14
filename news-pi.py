@@ -7,6 +7,7 @@ from mutagen.mp3 import MP3 as mp3
 import pygame
 import time
 import random
+from my_module import gcpspeech
 
 try:
     # debug log
@@ -31,20 +32,24 @@ try:
 
     # read news
     dt_now = datetime.datetime.now()
-    subprocess.run('./jsay.sh ' + str(dt_now.month) + '月' + str(dt_now.day) + '日のニュースをお伝えします。', shell=True)
-    
+    #subprocess.run('./jsay.sh ' + str(dt_now.month) + '月' + str(dt_now.day) + '日のニュースをお伝えします。', shell=True)
+    gcpspeech.start(str(dt_now.month) + '月' + str(dt_now.day) + '日のニュースをお伝えします。')
+
     for news in top_headline['articles']:
-        news['title'] = """ ' """ + news['title'] + """ ' """
+        #news['title'] = """ ' """ + news['title'] + """ ' """
         print(news['title'])
-        subprocess.run('./jsay.sh ' + news['title'], shell=True)
-            
-        news['description'] = """ ' """ + news['description'] + """ ' """
+        #subprocess.run('./jsay.sh ' + news['title'], shell=True)
+        gcpspeech.start(news['title']) 
+
+        #news['description'] = """ ' """ + news['description'] + """ ' """
         print(news['description'])
-        subprocess.run('./jsay.sh ' + news['description'], shell=True)
-        
-        print('---------------')   
+        #subprocess.run('./jsay.sh ' + news['description'], shell=True)
+        gcpspeech.start(news['description'])
+
+        print('\n')   
     
-    subprocess.run('./jsay.sh ' + '以上、ニュースをお伝えしました。', shell=True)
+    #subprocess.run('./jsay.sh ' + '以上、ニュースをお伝えしました。', shell=True)
+    gcpspeech.start('以上、ニュースをお伝えしました。')
 except:
     e = traceback.format_exc()
     print(e)

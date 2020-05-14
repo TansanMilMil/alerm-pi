@@ -1,3 +1,6 @@
 news-pi-error-log.txt
 alerm-pi-error-log.txt
 debug-log.txt
+/credentials/*
+**/__pycache__/*
+output.mp3
