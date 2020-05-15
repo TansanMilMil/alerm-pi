@@ -1,5 +1,4 @@
-news-pi-error-log.txt
-alerm-pi-error-log.txt
+*.log
 debug-log.txt
 /credentials/*
 **/__pycache__/*

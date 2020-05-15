@@ -8,16 +8,15 @@ import pygame
 import time
 import random
 from my_module import gcpspeech
+import configparser
 
 try:
-    # debug log
-    dt_now = datetime.datetime.now()
-    path = './debug-log.txt'
-    with open(path, mode='a') as f:
-        f.write(dt_now.strftime('called news-pi - %Y/%m/%d %H:%M:%S \n'))
-    
+    # load config
+    newsapi = configparser.ConfigParser()
+    newsapi.read('./credentials/newsapi.ini', encoding='utf-8')
+
     # get headline
-    newsapi = NewsApiClient(api_key='671c92cd456f4d639703ea2e24671bbf')
+    newsapi = NewsApiClient(api_key=newsapi['DEFAULT']['ApiKey'])
     top_headline = newsapi.get_top_headlines(country='jp')
     
     if len(top_headline['articles']) > 5:
@@ -32,29 +31,23 @@ try:
 
     # read news
     dt_now = datetime.datetime.now()
-    #subprocess.run('./jsay.sh ' + str(dt_now.month) + '月' + str(dt_now.day) + '日のニュースをお伝えします。', shell=True)
     gcpspeech.start(str(dt_now.month) + '月' + str(dt_now.day) + '日のニュースをお伝えします。')
 
     for news in top_headline['articles']:
-        #news['title'] = """ ' """ + news['title'] + """ ' """
         print(news['title'])
-        #subprocess.run('./jsay.sh ' + news['title'], shell=True)
         gcpspeech.start(news['title']) 
 
-        #news['description'] = """ ' """ + news['description'] + """ ' """
         print(news['description'])
-        #subprocess.run('./jsay.sh ' + news['description'], shell=True)
         gcpspeech.start(news['description'])
 
         print('\n')   
     
-    #subprocess.run('./jsay.sh ' + '以上、ニュースをお伝えしました。', shell=True)
     gcpspeech.start('以上、ニュースをお伝えしました。')
 except:
     e = traceback.format_exc()
     print(e)
     dt_now = datetime.datetime.now()
-    path = './news-pi-error-log.txt'
+    path = './news-pi-err.log'
     with open(path, mode='a') as f:
         f.write(dt_now.strftime('- Exception - %Y/%m/%d %H:%M:%S \n'))
         f.write(e + '\n\n')
