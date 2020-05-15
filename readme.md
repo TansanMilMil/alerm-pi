@@ -1,19 +1,25 @@
+# install applications
+- please install below applications.
 ```
-# for play bgm
-
+# install for play se.
 $ sudo apt-get install mpg321
-```
 
+# install for play bgm.
+$ sudo apt-get install python-pygame
 
-
-```
-# for News API
-
+# install for News API
 $ pip3 install newsapi-python
 ```
 
+# GCP settings
+1. please create new GCP Cloud project.(cf. https://cloud.google.com/text-to-speech/docs/quickstart-client-libraries?hl=ja)
+1. enable "Cloud Text-to-Speech API".
+1. create new "Service Account Key" and DL credential json.
+  - "GOOGLE_APPLICATION_CREDENTIALS" is used at crontab settings.
 
-
+# crontab settings
+- edit crontab and write settings, any events when triggered.
+- don't forget setting "LANG", "SHELL", "PATH" and "GOOGLE_APPLICATION_CREDENTIALS" that must be in credentials directory.
 ```
 $ crontab -e
 
@@ -33,7 +39,13 @@ GOOGLE_APPLICATION_CREDENTIALS="******************.json"
 45 12 * * 1,2,3,4,5 /home/pi/alerm-pi/alerm-pi.sh
 28 13 * * 1,2,3,4,5 /home/pi/alerm-pi/alerm-pi.sh
 20 17 * * 1,2,3,4,5 /home/pi/alerm-pi/alerm-pi.sh
-
 ```
 
+# allow execution
+```
+$ chmod 777 /home/pi/alerm-pi/alerm-pi.sh
+$ chmod 777 /home/pi/alerm-pi/alerm-pi.py
+$ chmod 777 /home/pi/alerm-pi/news-pi.sh
+$ chmod 777 /home/pi/alerm-pi/news-pi.py
+```
 
