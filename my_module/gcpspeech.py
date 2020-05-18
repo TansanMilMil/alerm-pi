@@ -23,6 +23,8 @@ def output_mp3(output_text):
     # Select the type of audio file you want returned
     audio_config = texttospeech.types.AudioConfig(
         audio_encoding=texttospeech.enums.AudioEncoding.MP3,
+        pitch=-2.0,
+        volume_gain_db=-1.8,
         speaking_rate=1.2)
     
     # Perform the text-to-speech request on the text input with the selected

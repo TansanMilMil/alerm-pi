@@ -35,10 +35,10 @@ try:
 
     for news in top_headline['articles']:
         print(news['title'])
-        gcpspeech.start(news['title']) 
+        gcpspeech.start(str(news['title'])) 
 
         print(news['description'])
-        gcpspeech.start(news['description'])
+        gcpspeech.start(str(news['description']))
 
         print('\n')   
     
