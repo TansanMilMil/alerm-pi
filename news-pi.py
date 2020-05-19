@@ -17,25 +17,31 @@ try:
 
     # get headline
     newsapi = NewsApiClient(api_key=newsapi['DEFAULT']['ApiKey'])
-    top_headline = newsapi.get_top_headlines(country='jp')
-    
+    top_headline = None
+    if len(sys.argv) >= 3:
+        top_headline = newsapi.get_top_headlines(country='jp', category=sys.argv[2])
+    else:
+        top_headline = newsapi.get_top_headlines(country='jp')
     if len(top_headline['articles']) > 5:
         random.shuffle(top_headline['articles'])
         top_headline['articles'] = top_headline['articles'][0:5]
     
     # start music
     pygame.mixer.init()
-    bgm = sys.argv[0]
-    if bgm == 1:
+    bgm = sys.argv[1] if len(sys.argv) >= 2 else None
+    if bgm == '1':
         pygame.mixer.music.load('./sounds/bgm1.mp3')
-    elif bgm == 2:
+        pygame.mixer.music.set_volume(0.1)
+    elif bgm == '2':
         pygame.mixer.music.load('./sounds/bgm2.mp3')
-    elif bgm == 3:
+        pygame.mixer.music.set_volume(0.07)
+    elif bgm == '3':
         pygame.mixer.music.load('./sounds/bgm3.mp3')
+        pygame.mixer.music.set_volume(0.07)
     else:
         pygame.mixer.music.load('./sounds/bgm1.mp3')
-    pygame.mixer.music.set_volume(0.1)
-    pygame.mixer.music.play(0)
+        pygame.mixer.music.set_volume(0.1)
+    pygame.mixer.music.play(-1)
 
     # read news
     dt_now = datetime.datetime.now()
