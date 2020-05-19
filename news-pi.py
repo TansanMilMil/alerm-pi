@@ -25,7 +25,15 @@ try:
     
     # start music
     pygame.mixer.init()
-    pygame.mixer.music.load('./bgm.mp3')
+    bgm = sys.argv[0]
+    if bgm == 1:
+        pygame.mixer.music.load('./sounds/bgm1.mp3')
+    elif bgm == 2:
+        pygame.mixer.music.load('./sounds/bgm2.mp3')
+    elif bgm == 3:
+        pygame.mixer.music.load('./sounds/bgm3.mp3')
+    else:
+        pygame.mixer.music.load('./sounds/bgm1.mp3')
     pygame.mixer.music.set_volume(0.1)
     pygame.mixer.music.play(0)
 
