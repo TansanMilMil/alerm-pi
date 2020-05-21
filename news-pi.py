@@ -42,6 +42,7 @@ try:
         pygame.mixer.music.load('./sounds/bgm1.mp3')
         pygame.mixer.music.set_volume(0.1)
     pygame.mixer.music.play(-1)
+    time.sleep(3)
 
     # read news
     dt_now = datetime.datetime.now()
