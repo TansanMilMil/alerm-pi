@@ -2,19 +2,19 @@
 - please install below applications.
 ```
 # install for play se.
-$ sudo apt-get install mpg321
+$ sudo apt-get install mpg321=0.3.2
 
 # install for play bgm.
-$ sudo apt-get install python-pygame
+$ sudo apt-get install python-pygame=1.9.3
 
 # install for News API
-$ pip3 install newsapi-python
+$ pip3 install newsapi-python==0.2.6
 
 # install for treat mp3
-$ pip3 install mutagen
+$ pip3 install mutagen==1.44.0
 
 # install for GCP Text-to-Speech API
-$ pip3 install --upgrade google-cloud-texttospeech
+$ pip3 install google-cloud-texttospeech==1.0.1
 ```
 
 # GCP settings
