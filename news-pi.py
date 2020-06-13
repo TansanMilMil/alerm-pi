@@ -10,6 +10,8 @@ import random
 from my_module import gcpspeech
 import configparser
 
+news_topics_sound = './sounds/decide11.mp3'
+
 try:
     # load config
     newsapi = configparser.ConfigParser()
@@ -49,13 +51,16 @@ try:
     gcpspeech.start(str(dt_now.month) + '月' + str(dt_now.day) + '日のニュースをお伝えします。')
 
     for news in top_headline['articles']:
+        subprocess.run('mpg321 ' + news_topics_sound, shell=True)
+        time.sleep(2)
         print(news['title'])
         gcpspeech.start(str(news['title'])) 
 
         print(news['description'])
         gcpspeech.start(str(news['description']))
 
-        print('\n')   
+        print('\n')  
+        time.sleep(1) 
     
     gcpspeech.start('以上、ニュースをお伝えしました。')
 except:
