@@ -52,7 +52,7 @@ try:
 
     for news in top_headline['articles']:
         subprocess.run('mpg321 ' + news_topics_sound, shell=True)
-        time.sleep(2)
+        time.sleep(0.5)
         print(news['title'])
         gcpspeech.start(str(news['title'])) 
 
@@ -60,7 +60,7 @@ try:
         gcpspeech.start(str(news['description']))
 
         print('\n')  
-        time.sleep(1) 
+        time.sleep(0.5) 
     
     gcpspeech.start('以上、ニュースをお伝えしました。')
 except:
