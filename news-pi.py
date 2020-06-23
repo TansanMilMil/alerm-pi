@@ -12,6 +12,10 @@ import configparser
 
 news_topics_sound = './sounds/decide11.mp3'
 
+def get_day_of_week_jp(dt):
+    w_list = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日']
+    return(w_list[dt.weekday()])
+
 try:
     # load config
     newsapi = configparser.ConfigParser()
@@ -48,7 +52,7 @@ try:
 
     # read news
     dt_now = datetime.datetime.now()
-    gcpspeech.start(str(dt_now.month) + '月' + str(dt_now.day) + '日のニュースをお伝えします。')
+    gcpspeech.start(f'{str(dt_now.month)}月{str(dt_now.day)}日{get_day_of_week_jp(dt_now)}のニュースをお伝えします。')
 
     for news in top_headline['articles']:
         subprocess.run('mpg321 ' + news_topics_sound, shell=True)
@@ -62,6 +66,13 @@ try:
         print('\n')  
         time.sleep(0.5) 
     
+    if dt_now.weekday() == 1:
+        gcpspeech.start(f'{get_day_of_week_jp(dt_now)}は燃えるゴミの日です。面倒くさがらずに出しましょう。')
+    if dt_now.weekday() == 3:
+        gcpspeech.start(f'{get_day_of_week_jp(dt_now)}は資源ゴミの日です。忘れないようにしましょう。')      
+    if dt_now.weekday() == 4:
+        gcpspeech.start(f'{get_day_of_week_jp(dt_now)}は燃えるゴミの日です。花金ですししっかり出しましょう。')          
+    time.sleep(0.5)
     gcpspeech.start('以上、ニュースをお伝えしました。')
 except:
     e = traceback.format_exc()
